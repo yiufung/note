@@ -188,6 +188,7 @@ Each layer for different facet of communications.
   > used with multicast addressing and delivery to manage which hosts are members of a multicast group
 
 * Transport Layer:
+ 
   1. **Transmission Control Protocol**:
       * packet loss, duplication, reordering
       * connection-oriented, does not preserve message boundaries
