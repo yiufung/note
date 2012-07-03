@@ -103,13 +103,13 @@ communication.
 
 *  Misconception among End-to-end, Fate Sharing and Stateless network:
 
-    1. End-to-end as stated in [Saltzer/Reed/Clark Paper](http://www.reed.com/dpr/locus/Papers/EndtoEnd.html):
+      1. End-to-end as stated in [Saltzer/Reed/Clark Paper](http://www.reed.com/dpr/locus/Papers/EndtoEnd.html):
 
         > The principle, called the end-to-end argument, suggests that functions placed at low levels of a system may be redundant or of little value when compared with the cost of providing them at that low level. Examples discussed in the paper include bit error recovery, security using encryption, duplicate message suppression, recovery from system crashes, and delivery acknowledgement. Low level mechanisms to support these functions are justified only as performance enhancements.
     
         * E2E emphasizes that, a function can only be correctly and completely implemented with the help of the application standing at the end points of the communication system, but the communication system *itself* cannot provide such function. 
 
-    2. Fate sharing as stated in [Design Philosophy of the DARPA Internet Protocols](http://ccr.sigcomm.org/archive/1995/jan95/ccr-9501-clark.pdf)
+      2. Fate sharing as stated in [Design Philosophy of the DARPA Internet Protocols](http://ccr.sigcomm.org/archive/1995/jan95/ccr-9501-clark.pdf)
 
         > state information which describes the on-going conversation must be protected. Specific examples of state information would be the number of packets transmitted, the number of packets acknowledged .. If the lower layers of the architecture lose this information, they will not be able to tell if data has been lost, and the application layer will have to cope with the loss of synchrony. .. In some network architectures, this state is stored in the intermediate packet switching nodes of the network. .. The alternative, which this architecture chose, is to take this information and gather it at the endpoint of the net, at the entity which is utilizing the service of the network. I call this approach to reliability "fate-sharing." The fate-sharing model suggests that it is acceptable to lose the state information associated with an entity if, at the same time, the entity itself is lost.
     
