@@ -234,6 +234,7 @@ communication.
 
 * two types of server: **iterative** and **concurrent**:
   1. iterative:
+
     * process: 
       1. wait for client request
       2. process
@@ -241,11 +242,14 @@ communication.
       4. go to 1. 
     * problem: 
       what if 2 takes a long time? no other clients are serviced. 
+
   2. concurrent:
+
     * process:
       1. wait for client request
       2. start new server instance to handle this request. this instance is terminated when request is done. original server continues to 3. 
       3. go to 1. 
+
   * nowadays most are concurrent. 
 
 ### 1.5.2 Peer-to-peer
