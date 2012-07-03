@@ -79,12 +79,16 @@ communication.
     *  TCP does *NOT* preserve msg boundaries. application must provide its own. 
 
 *  **End-to-End Argument** and **Fate Sharing**:
-    *  End-to-End:
+    * End-to-End:
+
       >  correctness and completeness can be achieved **ONLY** by involving the application or ultimate user of the communication system. 
+
       * important functions should *not* be implemented in low levels such as layers. 
       * low levels should *not* aim for perfection coz a perfect guess is unlikely to be possible
       * => a "dumb" network, a "smart" system
-    *  Fate sharing:
-      >  placing all the ncessary state to maintain an active communication association (e.g., virtual circuits) at the same location with the communicating endpoints. 
-      *  either fail together or not at all ( car fail even only one tyre blowout )
 
+    *  Fate sharing:
+
+      >  placing all the ncessary state to maintain an active communication association (e.g., virtual circuits) at the same location with the communicating endpoints. 
+
+      *  either fail together or not at all ( car fail even only one tyre blowout )
