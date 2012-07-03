@@ -35,20 +35,20 @@ communication.
 *  Origins from telephone network:
     *  **connection**: a physical circuit made for a duration of time
     *  provides **bandwidth** (or **capacity**).
-    *  **latency**: upper bound on time. Gives predicatable service. 
+    *  **latency**: upper bound on time. Gives predictable service. 
 
 *  **Packet Switching**:
     *  chunks from different sources be mixed together and pull
  apart later, called **multiplexing**. 
     *  path subject to change. 
-    *  Advantages: resilient (free from worry of phyical attack) and
+    *  Advantages: resilient (free from worry of physical attack) and
  better utilization of network links because of **statistical
  multiplexing**
 
 *  Packets switch receives packets: 
     *  need to *schedule* the packets
     *  stored in *buffer memory* (or *queue*), processed in FCFS (or FIFO)
-      1.  **Statistical Multiplexing**:
+      1. **Statistical Multiplexing**:
           *  FIFO + on-demand scheduling.
           *  Pro: High utilization, as busy as it can be. 
           *  Con: Limited predictability.
@@ -59,7 +59,7 @@ communication.
           *  Con: Poor utilization
 
 *  **Connection-Oriented** networks:
-    *  Build on cirtcuits or packets. 
+    *  Build on circuits or packets. 
     *  Virtual Circuits (VC) can be implemented atop connection oriented packets. Basis for X.25 protocol. 
     *  *state* be stored in each switch for each connection
     *  each packet carries small overhead info about the state
@@ -75,11 +75,13 @@ communication.
 
     *  Larger packets, but lead to **connectionless** network (no more complicated signaling protocol, yeah)
 
-*  **Message Boundaries** (or **Record Markers**):
+*  **Message Boundaries** (or **Record Markers**)
+    
     >  position or byte offset between one write and another
-    *  indicate the position of sender's message boundaries at the receiver. 
-    *  [CodeProject Explanation](http://www.codeproject.com/Articles/11922/Solution-for-TCP-IP-client-socket-message-boundary)
-    *  TCP does *NOT* preserve msg boundaries. application must provide its own. 
+     
+     *  indicate the position of sender's message boundaries at the receiver. 
+     *  [Code Project Explanation](http://www.codeproject.com/Articles/11922/Solution-for-TCP-IP-client-socket-message-boundary)
+     *  TCP does *NOT* preserve msg boundaries. application must provide its own. 
 
 ### 1.1.2  End-to-End Argument and Fate Sharing:
 
@@ -93,24 +95,25 @@ communication.
 
 *  **Fate sharing**:
 
-  >  placing all the ncessary state to maintain an active communication association (e.g., virtual circuits) at the same location with the communicating endpoints. 
+    >  placing all the necessary state to maintain an active communication association (e.g., virtual circuits) at the same location with the communicating endpoints. 
 
-  *  either fail together or not at all ( car fail even only one tyre blowout )
-  *  ? allows vc to remain active even if connectivity within network has failed for a modest time. 
+    *  either fail together or not at all ( car fails even only one tyre blowout )
+
+    *  ? allows VC to remain active even if connectivity within network has failed for a modest time. 
 
 *  Misconception among End-to-end, Fate Sharing and Stateless network:
 
-  * End-to-end as stated in [Saltzer/Reed/Clark Paper](http://www.reed.com/dpr/locus/Papers/EndtoEnd.html)
+    1. End-to-end as stated in [Saltzer/Reed/Clark Paper](http://www.reed.com/dpr/locus/Papers/EndtoEnd.html):
 
-    > The principle, called the end-to-end argument, suggests that functions placed at low levels of a system may be redundant or of little value when compared with the cost of providing them at that low level. Examples discussed in the paper include bit error recovery, security using encryption, duplicate message suppression, recovery from system crashes, and delivery acknowledgement. Low level mechanisms to support these functions are justified only as performance enhancements.
+        > The principle, called the end-to-end argument, suggests that functions placed at low levels of a system may be redundant or of little value when compared with the cost of providing them at that low level. Examples discussed in the paper include bit error recovery, security using encryption, duplicate message suppression, recovery from system crashes, and delivery acknowledgement. Low level mechanisms to support these functions are justified only as performance enhancements.
     
-    * E2E emphasizes that, a function can only be correctly and completely implemented with the help of the application standing at the end points of the communication system, but the communication system *itself* cannot provide such function. 
+        * E2E emphasizes that, a function can only be correctly and completely implemented with the help of the application standing at the end points of the communication system, but the communication system *itself* cannot provide such function. 
 
-  * Fate sharing as stated in [Design Philosophy of the DARPA Internet Protocols](http://ccr.sigcomm.org/archive/1995/jan95/ccr-9501-clark.pdf)
+    2. Fate sharing as stated in [Design Philosophy of the DARPA Internet Protocols](http://ccr.sigcomm.org/archive/1995/jan95/ccr-9501-clark.pdf)
 
-    > state information which describes the on-going conversation must be protected. Specific examples of state information would be the number of packets transmitted, the number of packets acknowledged .. If the lower layers of the architecture lose this information, they will not be able to tell if data has been lost, and the application layer will have to cope with the loss of synchrony. .. In some network architectures, this state is stored in the intermediate packet switching nodes of the network. .. The alternative, which this architecture chose, is to take this information and gather it at the endpoint of the net, at the entity which is utilizing the service of the network. I call this approach to reliability "fate-sharing." The fate-sharing model suggests that it is acceptable to lose the state information associated with an entity if, at the same time, the entity itself is lost.
+        > state information which describes the on-going conversation must be protected. Specific examples of state information would be the number of packets transmitted, the number of packets acknowledged .. If the lower layers of the architecture lose this information, they will not be able to tell if data has been lost, and the application layer will have to cope with the loss of synchrony. .. In some network architectures, this state is stored in the intermediate packet switching nodes of the network. .. The alternative, which this architecture chose, is to take this information and gather it at the endpoint of the net, at the entity which is utilizing the service of the network. I call this approach to reliability "fate-sharing." The fate-sharing model suggests that it is acceptable to lose the state information associated with an entity if, at the same time, the entity itself is lost.
     
-    * Fate sharing empahasizes that, "state info which describes *on-going* conversation" be gathered at *endpoint* of the net.
+        * Fate sharing empahasizes that, "state info which describes *on-going* conversation" be gathered at *endpoint* of the net.
 
   * Thanks for [J. Noel Chiappa's clear explanation](http://mercury.lcs.mit.edu/~jnc/tech/end_end.html)
 
@@ -130,17 +133,25 @@ communication.
 
 ### 1.2.1 Layering
 
-    *  each layer for different facet of communications. 
+Each layer for different facet of communications. 
 
 **Open Systems Interconnection (OSI)**:
-    1. Physical -> data rates, bit encoding, low-lever error detection
-    2. Link     -> methods for communication across single link. error detection mostly lies here. e.g., Ethernet, Wi-Fi
-    3. Network or Internetwork -> methods for communicating in a multihop fashion across different type of link networks. e.g., IP datagram
+
+  1. Physical -> data rates, bit encoding, low-lever error detection
+  
+  2. Link     -> methods for communication across single link. error detection mostly lies here. e.g., Ethernet, Wi-Fi
+    
+  3. Network or Internetwork -> methods for communicating in a multihop fashion across different type of link networks. e.g., IP datagram
+    
     * 1-3 is for all networked devices, 4-7 are (in therory) implemented only by hosts. 
-    4. Transport ->  connections or associations between multiple programs running on same computer system. e.g., Internet TCP
-    5. Session -> for multiple connections constituting a communication session
-    6. Presentation -> for expressing data formats and translation rules for application. e.g., conversion of EBCIDC to ASCII
-    7. Application -> accomplishing user-initiated task. e.g., FTP, Skype
+    
+  4. Transport ->  connections or associations between multiple programs running on same computer system. e.g., Internet TCP
+    
+  5. Session -> for multiple connections constituting a communication session
+    
+  6. Presentation -> for expressing data formats and translation rules for application. e.g., conversion of EBCIDC to ASCII
+    
+  7. Application -> accomplishing user-initiated task. e.g., FTP, Skype
 
 ### 1.2.2 Multiplexing, Demultiplexing, Encapsulation in Layered Implementation
 
@@ -178,26 +189,26 @@ communication.
 
 * Transport Layer:
   1. **Transmission Control Protocol**:
-    * packet loss, duplication, reordering
-    * connection-oriented, does not preserve message boundaries
-    * reliable flow of data between two hosts. 
+      * packet loss, duplication, reordering
+      * connection-oriented, does not preserve message boundaries
+      * reliable flow of data between two hosts. 
 
   2. **User Datagram Protocol**:
-    * allow applications preserve message boundaries if there is no rate control or error control
-    * not reliable. allows datagrams to be sent, but no guarantee that it will reach the other end. 
-    * app add reliability itself.
+      * allow applications preserve message boundaries if there is no rate control or error control
+      * not reliable. allows datagrams to be sent, but no guarantee that it will reach the other end. 
+      * app add reliability itself.
 
   3. *Datagram Congestion Control Protocol (DCCP)*:
-    > connection-oriented exchange of unreliable datagrams but with congestion control
+      > connection-oriented exchange of unreliable datagrams but with congestion control
 
   4. *Stream Control Transmission Protocol (SCTP)*:
-    > reliable delivery but does not require sequencing of data to be strictly maintained. 
+      > reliable delivery but does not require sequencing of data to be strictly maintained. 
 
 ### 1.3.2 Multiplexing, Demultiplexing and Encapsulation in TCP/IP:
 
 1. IP get a datagram and checks destination IP address
 2. If dest IP addr exists, check 8-bit IPv4 *Protocol* field to determine what protocol to invoke next. 
-  * 4 for IPv4, 6 for TCP, 17 for UDP
+    * 4 for IPv4, 6 for TCP, 17 for UDP
 3. Passed to Transport Layer for further process. 
 
 ### 1.3.3 Port Numbers
@@ -235,22 +246,22 @@ communication.
 * two types of server: **iterative** and **concurrent**:
   1. iterative:
 
-    * process: 
-      1. wait for client request
-      2. process
-      3. send back response
-      4. go to 1. 
-    * problem: 
-      what if 2 takes a long time? no other clients are serviced. 
+      * process: 
+      	1. wait for client request
+      	2. process
+      	3. send back response
+      	4. go to 1. 
+      * problem: 
+      	* what if 2 takes a long time? no other clients are serviced. 
 
   2. concurrent:
 
-    * process:
-      1. wait for client request
-      2. start new server instance to handle this request. this instance is terminated when request is done. original server continues to 3. 
-      3. go to 1. 
+      * process:
+        1. wait for client request
+        2. start new server instance to handle this request. this instance is terminated when request is done. original server continues to 3. 
+        3. go to 1. 
 
-  * nowadays most are concurrent. 
+* nowadays most are concurrent. 
 
 ### 1.5.2 Peer-to-peer
 
