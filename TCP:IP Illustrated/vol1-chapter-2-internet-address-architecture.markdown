@@ -28,7 +28,7 @@
 * *network* portion to identify which network, *host* portion to identify particular host given network portion.
 * same network could have different number of hosts. ip addr not enough, how? **Classful Addressing**
 * 5 classes:
-  ![Classful Addressing from Wiki](./vol1-chapter-2-classful-addressing.png)
+  ![Classful Addressing from Wiki](vol1-chapter-2-classful-addressing.png)
   * C to small but B too big. 
   * Lasted only for a decade, abandoned because inconvenient to centrally coordinate allocation of new class everytime a new network added to the Internet. 
 
