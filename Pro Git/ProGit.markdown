@@ -148,6 +148,46 @@
   * checking out a local branch from a remote branch creates a tracking branch
   * has direct relationship to the remote branch. git push and pull all pointed to that branch. 
     * when ``git clone``, create master branch that tracks origin/master
+  * ``git checkout --track local origin/branch`` to let local branch track remote branch
+  * ``git push origin :remotebranch`` to remove remote branches
+
+#### Rebasing
+
+* take patch of change that was introduce in C1 and reapply it on top of C2, which is in another branch. 
+* Procedures:
+  1. find common ancestor
+  2. accumulate diff of the branch you're on, save into temp files
+  3. reset experiment, checkout master, apply changes.
+  4. checkout master, fast-forward merge.
+* result: a cleaner history line. 
+* <img src="rebase-example.png" />
+* **Do not rebase commits that you have pushed to a public repository**
+
+## Setting up Git Server (Omitted)
+## Create GitHub account (Omitted)
+
+## Distributed Git
+
+### Commit Guidelines
+* ``git diff --check`` to check whitespace issues. 
+* use nice message.
+
+### Git Workflows(Ommitted)
+
+## Git Tools
+* double dot to check all commits reachable by experiment but not master: ``git log master..experiment``
+* ``git add -i``: interactive staging
+* ``git add -i`` then ``5`` to stage patches: same file, different versions
+* ``git stash``: want to switch branches but don't want to commit, stash the changes
+  * ``git stash list``: see which stashes i have 
+  * ``git stash apply``: resume most recent stash
+
+* Rewrite history
+
+
+
+
+
 
 
 
